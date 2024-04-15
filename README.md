@@ -2,35 +2,40 @@
 
 ## Requirments
 - Ubuntu 20.00
-- 6 core and 8 GB RAM 
 
-## Install Extra dependancy 
-```bash
-sudo apt install linux-modules-extra
+## Setup Hugepages
+- Edit `/etc/default/grub`
 ```
-
-## Setup env
-```bash
-ulimit -l
+GRUB_CMDLINE_LINUX_DEFAULT="default_hugepagesz=1G hugepagesz=1G hugepages=2"
 ```
-- Setup huge pages https://github.com/lagopus/lagopus/blob/master/docs/how-to-allocate-1gb-hugepages.md / https://help.ubuntu.com/community/KVM%20-%20Using%20Hugepages (Feel free to follow your own guide.)
-
-## Dev Tools
-
-```bash
-sudo apt-get install libhugetlbfs-bin numactl hugeadm
+- Update grub `sudo update-grub`
+- Mount hugetlbfs, Prepare hugetlbfs individually for the host and each container. In order to mount hugetlbfs, edit `/etc/fstab` like below.
+```
+none /dev/hugepages hugetlbfs pagesize=1G,size=4G 0 0
+```
+- Reboot
+- Check Hugepages 
+```
+grep Huge /proc/meminfo
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+FileHugePages:         0 kB
+HugePages_Total:    1024
+HugePages_Free:     1024
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:         4194304 kB
 ```
 
 ## Getting Started
 
 ```bash
-docker-compose up 
-export PATH=$KUBECONFIG:$(pwd)/kubeconfig.yaml
+./setup.sh # It will install the k3s cluster
 # Configure kube ctx for the cluster 
 kubectl apply -f pod.yaml
 ```
 
-NOTES:
-- Add Node Labels for targetting spdk deployment 
-- Add nodeSelector in pod to target specific node by label
- 
+## NOTES:
+
+- To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. For example:

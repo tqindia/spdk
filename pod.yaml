@@ -4,8 +4,12 @@ metadata:
   name: spdk
 spec:
   containers:
-  - name: spdk
-    image: evalsocket/spdk:latest
+  - name: spdk-container
+    image: evalsocket/spdk:v3
+    volumeMounts:
+    - name: dev-hostpath
+      mountPath: /host/dev
+      readOnly: true
     ports:
     - containerPort: 9009
     - containerPort: 4444
@@ -17,3 +21,7 @@ spec:
         hugepages-1Gi: 1Gi
       requests:
         memory: 100Mi
+  volumes:
+  - name: dev-hostpath
+    hostPath:
+      path: /dev

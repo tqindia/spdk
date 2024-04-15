@@ -21,3 +21,16 @@ ulimit -l
 sudo apt-get install libhugetlbfs-bin numactl hugeadm
 ```
 
+## Getting Started
+
+```bash
+docker-compose up 
+export PATH=$KUBECONFIG:$(pwd)/kubeconfig.yaml
+# Configure kube ctx for the cluster 
+kubectl apply -f pod.yaml
+```
+
+NOTES:
+- Add Node Labels for targetting spdk deployment 
+- Add nodeSelector in pod to target specific node by label
+ 

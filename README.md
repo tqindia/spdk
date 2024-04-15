@@ -1,5 +1,7 @@
 # spdk
 
+[![asciicast](https://asciinema.org/a/cZZw7xG0xxPEQgRZkNjrnyC2V.svg)](https://asciinema.org/a/cZZw7xG0xxPEQgRZkNjrnyC2V)
+
 ## Requirments
 - Ubuntu 20.00
 
@@ -34,6 +36,11 @@ Hugetlb:         4194304 kB
 ./setup.sh # It will install the k3s cluster
 # Configure kube ctx for the cluster 
 kubectl apply -f pod.yaml
+```
+
+## nvmf_create_transport
+```bash
+scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
 ```
 
 ## NOTES:

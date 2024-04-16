@@ -20,6 +20,5 @@ RUN  ./configure
 RUN  make
 
 COPY scripts/run.sh . 
-RUN chmod a+x /src/spdk/run.sh
 
 ENTRYPOINT ["/src/spdk/run.sh"]

@@ -8,18 +8,34 @@
 ## Setup Hugepages
 - Edit `/etc/default/grub`
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="default_hugepagesz=1G hugepagesz=1G hugepages=2"
-```
+GRUB_CMDLINE_LINUX_DEFAULT="default_hugepagesz=1G hugepagesz=1G hugepages=3"
+``` 
 - Update grub `sudo update-grub`
+- `echo 3 > /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages`
 - Mount hugetlbfs, Prepare hugetlbfs individually for the host and each container. In order to mount hugetlbfs, edit `/etc/fstab` like below.
 ```
-none /dev/hugepages hugetlbfs pagesize=1G,size=2G 0 0
+none /dev/hugepages hugetlbfs pagesize=1G,size=4G 0 0
 ```
 - Reboot
 - Check Hugepages 
 ```
 grep Huge /proc/meminfo
 ```
+
+Dev Tools:
+```
+sudo apt-get install hugeadm
+```
+
+Troubleshoot:
+Check Huge Pages 
+```
+➜  ~ hugeadm --pool-list
+      Size  Minimum  Current  Maximum  Default
+   2097152        0        0        0        *
+1073741824        3        3        3
+```
+
 
 Ref:
 - https://github.com/xmrig/xmrig/blob/dev/scripts/enable_1gb_pages.sh
@@ -28,9 +44,26 @@ Ref:
 ## Getting Started
 
 ```bash
-./setup.sh # It will install the k3s cluster
+$ ./setup.sh # It will install the k3s cluster
 # Configure kube ctx for the cluster 
-kubectl apply -f pod.yaml
+$ kubectl get nodes -oyaml
+...
+    allocatable:
+      cpu: "4"
+      ephemeral-storage: "39358207765"
+      hugepages-1Gi: 3Gi
+      hugepages-2Mi: "0"
+      memory: 13224148Ki
+      pods: "110"
+    capacity:
+      cpu: "4"
+      ephemeral-storage: 40458684Ki
+      hugepages-1Gi: 3Gi
+      hugepages-2Mi: "0"
+      memory: 16369876Ki
+      pods: "110"
+...
+$ kubectl apply -f pod.yaml
 ```
 
 ## nvmf_create_transport

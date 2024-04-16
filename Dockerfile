@@ -14,7 +14,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN git clone https://github.com/spdk/spdk --recursive
 
 WORKDIR /src/spdk
-
+RUN apt-get update
 RUN  scripts/pkgdep.sh
 RUN  ./configure
 RUN  make

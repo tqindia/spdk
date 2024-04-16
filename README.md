@@ -37,3 +37,10 @@ scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
 ## NOTES:
 
 - To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. For example:
+
+
+## Improvment 
+TBD
+
+## Open Questions?
+TBD

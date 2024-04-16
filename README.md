@@ -45,13 +45,15 @@ Mount Point          Options
 
 Ref:
 - https://github.com/xmrig/xmrig/blob/dev/scripts/enable_1gb_pages.sh
+- https://github.com/lagopus/lagopus/blob/master/docs/how-to-allocate-1gb-hugepages.md
+- https://doc.dpdk.org/guides/tools/hugepages.html
+- https://doc.dpdk.org/guides/linux_gsg/sys_reqs.html
 - Marco Bonelli Answer, https://stackoverflow.com/questions/72522360/why-doesnt-the-linux-kernel-use-huge-pages
 
 ## Getting Started
 
 ```bash
 $ ./setup.sh # It will install the k3s cluster
-# Configure kube ctx for the cluster 
 $ kubectl get nodes -oyaml
 ...
     allocatable:
@@ -79,6 +81,7 @@ kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -
 
 ## Improvment 
 - To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. 
+- Plan SPDK app resource limit, Add host network if required
 - Monitor Huge pages releated issue in k8s (https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md)
 
 ## Open Questions?
@@ -87,6 +90,9 @@ kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -
 nvmf_tgt -s -mem-size 1Gb
 ```
 we can use InitContainer to grab the memory and then use it inside the spdk container
+
+- Need more understanding of spdk app(nvmf_tgt) to handle it correctly
+
 
 ## SPDK best practices for K8S
 - TBD

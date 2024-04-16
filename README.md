@@ -28,12 +28,18 @@ sudo apt-get install hugeadm
 ```
 
 Troubleshoot:
+
 Check Huge Pages 
 ```
 ➜  ~ hugeadm --pool-list
       Size  Minimum  Current  Maximum  Default
    2097152        0        0        0        *
 1073741824        3        3        3
+
+➜  ~ hugeadm    --list-all-mounts
+
+Mount Point          Options
+/dev/hugepages       rw,relatime,pagesize=1024M,size=4294967296
 ```
 
 

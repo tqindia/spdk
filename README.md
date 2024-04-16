@@ -81,12 +81,11 @@ $ kubectl get nodes -oyaml
       pods: "110"
 ...
 $ kubectl apply -f pod.yaml
+$ kubectl get pod spdk 
+# Once pod is running then run this command 
+$ kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
 ```
 
-## nvmf_create_transport
-```bash
-kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
-```
 
 ## Improvment 
 - To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. 

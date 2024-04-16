@@ -49,6 +49,8 @@ nvmf_tgt -s -mem-size 1Gb
 ```
 we can use InitContainer to grab the memory and then use it inside the spdk container
 
+## SPDK best practices for K8S
+- TBD
 
 ## Thanks:
 SPDK Community: https://spdk-team.slack.com/archives/CJE4C98G1/p1712931418068589

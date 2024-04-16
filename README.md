@@ -59,7 +59,7 @@ $ docker exec -it spdk scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8
 ## Getting Started (K8S)
 
 ```bash
-$ ./setup.sh # It will install the k3s cluster
+$ ./scripts/setup.sh # It will install the k3s cluster
 $ kubectl get nodes -oyaml
 ...
     allocatable:

@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+MAINTAINER Yuvraj Yadav<hi@evalsocket.dev>
 
 WORKDIR /src
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
@@ -27,6 +28,6 @@ RUN sudo make
 
 RUN sudo apt-get install linux-modules-extra-$(uname -r) -y
 
-COPY run.sh .
+COPY scripts/run.sh .
 
 ENTRYPOINT ["/src/spdk/run.sh"]

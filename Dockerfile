@@ -15,9 +15,9 @@ RUN git clone https://github.com/spdk/spdk --recursive
 
 WORKDIR /src/spdk
 
-RUN sudo scripts/pkgdep.sh
-RUN sudo ./configure
-RUN sudo make
+RUN  scripts/pkgdep.sh
+RUN  ./configure
+RUN  make
 
 COPY scripts/run.sh .
 

@@ -55,7 +55,7 @@ Ref:
 
 ## Getting Started (Docker)
 ```bash
-$ docker run -it --name spdk --rm --privileged -v /dev:/dev --ipc host evalsocket/spdk:v3
+$ docker run -it --name spdk --rm --privileged -v /dev:/dev --ipc host evalsocket/spdk:v5
 $ docker exec -it spdk scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
 ```
 ## Getting Started (K8S)
@@ -104,7 +104,7 @@ we can use InitContainer to grab the memory and then use it inside the spdk cont
 
 
 ## SPDK best practices for K8S
-- TBD
+- TBD (Comming Soon)
 
 ## Thanks:
 SPDK Community: https://spdk-team.slack.com/archives/CJE4C98G1/p1712931418068589

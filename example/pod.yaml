@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: spdk-container
-    image: evalsocket/spdk:v3
+    image: evalsocket/spdk:v5
     volumeMounts:
     - name: dev-hostpath
       mountPath: /host/dev

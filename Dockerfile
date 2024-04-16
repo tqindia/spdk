@@ -19,6 +19,6 @@ RUN  scripts/pkgdep.sh
 RUN  ./configure
 RUN  make
 
-COPY scripts/run.sh .
+COPY scripts/run.sh . && chmod a+x run.sh
 
 ENTRYPOINT ["/src/spdk/run.sh"]

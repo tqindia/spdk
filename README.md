@@ -89,6 +89,7 @@ kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -
 - To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. 
 - Plan SPDK app resource limit, Add host network if required
 - Monitor Huge pages releated issue in k8s (https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md)
+- For Github Action we need to fix linux-modules-extra for azure machine, Github runner use azure, I tested and build images on GCP machine. 
 
 ## Open Questions?
 - Currently, the command sets the memory size to 1GB, but it's hardcoded. We require a method to dynamically pass this value instead.

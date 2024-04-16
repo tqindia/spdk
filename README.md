@@ -21,6 +21,10 @@ none /dev/hugepages hugetlbfs pagesize=1G,size=2G 0 0
 grep Huge /proc/meminfo
 ```
 
+Ref:
+- https://github.com/xmrig/xmrig/blob/dev/scripts/enable_1gb_pages.sh
+- Marco Bonelli Answer, https://stackoverflow.com/questions/72522360/why-doesnt-the-linux-kernel-use-huge-pages
+
 ## Getting Started
 
 ```bash
@@ -31,16 +35,20 @@ kubectl apply -f pod.yaml
 
 ## nvmf_create_transport
 ```bash
-scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
+kubectl exec spdk -- scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
 ```
 
-## NOTES:
-
-- To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. For example:
-
-
 ## Improvment 
-TBD
+- To target the deployment of SPDK  to specific nodes, you can add labels to your Kubernetes nodes using the `kubectl label nodes` command. 
+- Monitor Huge pages releated issue in k8s (https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md)
 
 ## Open Questions?
-TBD
+- Currently, the command sets the memory size to 1GB, but it's hardcoded. We require a method to dynamically pass this value instead.
+```bash
+nvmf_tgt -s -mem-size 1Gb
+```
+we can use InitContainer to grab the memory and then use it inside the spdk container
+
+
+## Thanks:
+SPDK Community: https://spdk-team.slack.com/archives/CJE4C98G1/p1712931418068589

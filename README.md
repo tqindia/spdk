@@ -17,6 +17,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="default_hugepagesz=1G hugepagesz=1G hugepages=3 huge
 - Mount hugetlbfs, Prepare hugetlbfs individually for the host and each container. In order to mount hugetlbfs, edit `/etc/fstab` like below.
 ```
 none /dev/hugepages hugetlbfs pagesize=1G,size=4G 0 0
+# none /dev/hugepages2M hugetlbfs pagesize=2M,size=<SIZE> 0 0
 ```
 - Reboot
 - Check Hugepages 

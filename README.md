@@ -52,10 +52,10 @@ Ref:
 - Marco Bonelli Answer, https://stackoverflow.com/questions/72522360/why-doesnt-the-linux-kernel-use-huge-pages
 
 ## Getting Started (Docker)
-
+```bash
 $ docker run -it --name spdk --rm --privileged -v /dev:/dev --ipc host evalsocket/spdk:v3
 $ docker exec -it spdk scripts/rpc.py nvmf_create_transport -t TCP -u 16384 -m 8 -c 8192
-
+```
 ## Getting Started (K8S)
 
 ```bash

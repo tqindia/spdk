@@ -1,7 +1,6 @@
 FROM ubuntu:20.04
 MAINTAINER Yuvraj Yadav<hi@evalsocket.dev>
 
-
 ENV TZ=Asia/Kolkata \
     DEBIAN_FRONTEND=noninteractive
 ENV LANG en_US.utf8

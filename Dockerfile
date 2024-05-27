@@ -7,6 +7,7 @@ ENV LANG en_US.utf8
 
 
 
+
 WORKDIR /src
 RUN apt-get update && apt-get install -y locales git curl sudo tzdata pkg-config linux-modules-extra-azure && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8

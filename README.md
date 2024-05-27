@@ -6,6 +6,7 @@
 
 
 
+
 ## Setup Hugepages
 - Edit `/etc/default/grub`
 ```

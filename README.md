@@ -1,7 +1,5 @@
 # spdk
 
-[![asciicast](https://asciinema.org/a/cZZw7xG0xxPEQgRZkNjrnyC2V.svg)](https://asciinema.org/a/cZZw7xG0xxPEQgRZkNjrnyC2V)
-
 ## Requirments
 - Ubuntu 20.00
 - Docker
